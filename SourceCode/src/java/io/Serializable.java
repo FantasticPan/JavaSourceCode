@@ -32,6 +32,12 @@ package java.io;
  * deserialized.  All subtypes of a serializable class are themselves
  * serializable.  The serialization interface has no methods or fields
  * and serves only to identify the semantics of being serializable. <p>
+ * 类的序列化性由实现该类的类启用。
+ * JavaIO.SerialI化接口。
+ * 不实现此的类接口将不具有它们的任何状态序列化或反序列化。
+ * 可序列化类的所有子类型都是自己的。
+ * 可序列化。序列化接口没有方法或字段。
+ * 只用于标识可序列化的语义
  *
  * To allow subtypes of non-serializable classes to be serialized, the
  * subtype may assume responsibility for saving and restoring the

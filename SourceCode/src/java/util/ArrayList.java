@@ -25,10 +25,11 @@
 
 package java.util;
 
+import sun.misc.SharedSecrets;
+
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
-import sun.misc.SharedSecrets;
 
 /**
  * Resizable-array implementation of the <tt>List</tt> interface.  Implements
@@ -111,11 +112,15 @@ public class ArrayList<E> extends AbstractList<E>
 
     /**
      * Default initial capacity.
+     *
+     * 默认初始容量
      */
     private static final int DEFAULT_CAPACITY = 10;
 
     /**
      * Shared empty array instance used for empty instances.
+     *
+     * 用于空实例的共享空数组实例
      */
     private static final Object[] EMPTY_ELEMENTDATA = {};
 
@@ -123,6 +128,9 @@ public class ArrayList<E> extends AbstractList<E>
      * Shared empty array instance used for default sized empty instances. We
      * distinguish this from EMPTY_ELEMENTDATA to know how much to inflate when
      * first element is added.
+     *
+     * 用于缺省大小的空实例的共享空数组实例。
+     * 我们将此与 EMPTY_ELEMENTDATA 区分开来，以了解何时需要膨胀多少添加第一个元素
      */
     private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
 
@@ -131,6 +139,10 @@ public class ArrayList<E> extends AbstractList<E>
      * The capacity of the ArrayList is the length of this array buffer. Any
      * empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA
      * will be expanded to DEFAULT_CAPACITY when the first element is added.
+     *
+     * 存储数组列表元素的数组缓冲区。
+     * 数组的容量是这个数组缓冲器的长度。
+     * 任何空数组与 elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA 当添加第一个元素时，将扩展为默认(DEFAULT_CAPACITY)容量
      */
     transient Object[] elementData; // non-private to simplify nested class access
 
@@ -144,11 +156,17 @@ public class ArrayList<E> extends AbstractList<E>
     /**
      * Constructs an empty list with the specified initial capacity.
      *
+     * 构造具有指定初始容量的空列表
+     *
      * @param  initialCapacity  the initial capacity of the list
      * @throws IllegalArgumentException if the specified initial capacity
      *         is negative
      */
     public ArrayList(int initialCapacity) {
+        /*
+         * 当创建一个ArrayList对象若是传入了初始化数组的个数的话，就直接this.elementData = new Object[initialCapacity];
+         * 否则，将 private static final Object[] EMPTY_ELEMENTDATA = {} 这个数组赋值给this.elementData
+         */
         if (initialCapacity > 0) {
             this.elementData = new Object[initialCapacity];
         } else if (initialCapacity == 0) {
@@ -190,6 +208,9 @@ public class ArrayList<E> extends AbstractList<E>
      * Trims the capacity of this <tt>ArrayList</tt> instance to be the
      * list's current size.  An application can use this operation to minimize
      * the storage of an <tt>ArrayList</tt> instance.
+     * 将此<tt>ArrayList</tt>实例的容量修整为列表的当前大小。
+     * 应用程序可以使用此操作来最小化。
+     * 存储一个<tt>ArrayList</tt>实例。
      */
     public void trimToSize() {
         modCount++;
@@ -204,6 +225,7 @@ public class ArrayList<E> extends AbstractList<E>
      * Increases the capacity of this <tt>ArrayList</tt> instance, if
      * necessary, to ensure that it can hold at least the number of elements
      * specified by the minimum capacity argument.
+     * 增加这个 <tt>ArrayList</tt> 实例的容量，如果必要的，以确保它至少能容纳元素的数量由最小容量参数指定
      *
      * @param   minCapacity   the desired minimum capacity
      */
