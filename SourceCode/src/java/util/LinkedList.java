@@ -566,7 +566,12 @@ public class LinkedList<E>
     Node<E> node(int index) {
         // assert isElementIndex(index);
 
-        if (index < (size >> 1)) {
+        /*
+        判断index位于链表的前半部分还是后半部分，从而判断从哪个方向遍历
+        用循环方式遍历到index那个位置，得到该位置的元素并返回
+        LinkedList获取元素采用的是遍历链表的方式，虽然最多只会循环列表大小的一半，但性能也比较低的
+        */
+        if (index < (size >> 1)) { //size >> 1 等同于size/2
             Node<E> x = first;
             for (int i = 0; i < index; i++)
                 x = x.next;

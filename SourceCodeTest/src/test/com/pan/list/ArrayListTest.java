@@ -31,10 +31,11 @@ public class ArrayListTest {
 
         String[] strArray = new String[list.size()];
         list.toArray(strArray);
-        for (int i = 0; i < strArray.length; i++) {
-            System.out.println("转变成数组遍历：" + strArray[i]);
+        for (String aStrArray : strArray) {
+            System.out.println("转变成数组遍历：" + aStrArray);
         }
 
+        //使用这种方式，迭代器对象使用完之后就被销毁了
         for (Iterator iterator1 = list.iterator(); iterator1.hasNext(); ) {
             System.out.println("迭代器for遍历：" + iterator1.next());
         }
